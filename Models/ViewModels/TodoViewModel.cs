@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ToDoUygulaması.Models.ViewModels
@@ -31,8 +30,8 @@ namespace ToDoUygulaması.Models.ViewModels
         [Display(Name = "Kategori")]
         public int? CategoryId { get; set; }
 
-        public string CategoryName { get; set; }
-
+        // SelectList için Required attribute'unu kaldırdık
+        [Display(Name = "Kategoriler")]
         public SelectList Categories { get; set; }
     }
 }

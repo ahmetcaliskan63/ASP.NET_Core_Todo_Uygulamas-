@@ -1,0 +1,41 @@
+@model ToDoUygulaması.Models.Category
+
+@{
+    ViewData["Title"] = "Kategori Sil";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Kategori Silme Onayı</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Bu kategoriyi silmek istediğinizden emin misiniz?</h5>
+                    <div class="mt-4">
+                        <dl class="row">
+                            <dt class="col-sm-3">Kategori Adı:</dt>
+                            <dd class="col-sm-9">@Model.Name</dd>
+                            
+                            <dt class="col-sm-3">Açıklama:</dt>
+                            <dd class="col-sm-9">@Model.Description</dd>
+                        </dl>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i> Uyarı: Bu kategoriye ait tüm görevler de silinecektir.
+                    </div>
+                    
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

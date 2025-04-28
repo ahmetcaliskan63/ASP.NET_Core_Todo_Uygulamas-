@@ -33,6 +33,7 @@ namespace ToDoUygulaması.Controllers
             return View(todos);
         }
 
+        // GET: Todo/Create
         public async Task<IActionResult> Create()
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
@@ -43,30 +44,49 @@ namespace ToDoUygulaması.Controllers
             return View(viewModel);
         }
 
+        // POST: Todo/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TodoViewModel viewModel)
         {
+            // ModelState'den Categories alanını çıkar çünkü bu sadece view için kullanılıyor
+            ModelState.Remove("Categories");
+            
             if (ModelState.IsValid)
             {
-                var todo = new Todo
+                try
                 {
-                    Title = viewModel.Title,
-                    Description = viewModel.Description,
-                    IsCompleted = viewModel.IsCompleted,
-                    DueDate = viewModel.DueDate,
-                    CategoryId = viewModel.CategoryId
-                };
+                    var todo = new Todo
+                    {
+                        Title = viewModel.Title,
+                        Description = viewModel.Description,
+                        IsCompleted = viewModel.IsCompleted,
+                        DueDate = viewModel.DueDate,
+                        CategoryId = viewModel.CategoryId,
+                        CreatedDate = DateTime.Now
+                    };
 
-                await _todoService.AddTodoAsync(todo);
-                return RedirectToAction(nameof(Index));
+                    await _todoService.AddTodoAsync(todo);
+                    
+                    // Başarılı mesajını TempData'ya ekle
+                    TempData["SuccessMessage"] = "Görev başarıyla kaydedildi!";
+                    
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    // Hata mesajını ModelState'e ekle
+                    ModelState.AddModelError("", "Görev eklenirken bir hata oluştu: " + ex.Message);
+                }
             }
 
+            // ModelState geçerli değilse veya hata oluşursa, kategorileri yeniden yükle
             var categories = await _categoryService.GetAllCategoriesAsync();
-            viewModel.Categories = new SelectList(categories, "Id", "Name");
+            viewModel.Categories = new SelectList(categories, "Id", "Name", viewModel.CategoryId);
             return View(viewModel);
         }
 
+        // GET: Todo/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             var todo = await _todoService.GetTodoByIdAsync(id);
@@ -82,15 +102,16 @@ namespace ToDoUygulaması.Controllers
                 Title = todo.Title,
                 Description = todo.Description,
                 IsCompleted = todo.IsCompleted,
-                CreatedDate = todo.CreatedDate,
                 DueDate = todo.DueDate,
                 CategoryId = todo.CategoryId,
-                Categories = new SelectList(categories, "Id", "Name")
+                CreatedDate = todo.CreatedDate,
+                Categories = new SelectList(categories, "Id", "Name", todo.CategoryId)
             };
 
             return View(viewModel);
         }
 
+        // POST: Todo/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TodoViewModel viewModel)
@@ -100,26 +121,42 @@ namespace ToDoUygulaması.Controllers
                 return NotFound();
             }
 
+            // ModelState'den Categories alanını çıkar çünkü bu sadece view için kullanılıyor
+            ModelState.Remove("Categories");
+
             if (ModelState.IsValid)
             {
-                var todo = await _todoService.GetTodoByIdAsync(id);
-                if (todo == null)
+                try
                 {
-                    return NotFound();
+                    var todo = await _todoService.GetTodoByIdAsync(id);
+                    if (todo == null)
+                    {
+                        return NotFound();
+                    }
+
+                    todo.Title = viewModel.Title;
+                    todo.Description = viewModel.Description;
+                    todo.IsCompleted = viewModel.IsCompleted;
+                    todo.DueDate = viewModel.DueDate;
+                    todo.CategoryId = viewModel.CategoryId;
+
+                    await _todoService.UpdateTodoAsync(todo);
+                    
+                    // Başarılı mesajını TempData'ya ekle
+                    TempData["SuccessMessage"] = "Görev başarıyla güncellendi!";
+                    
+                    return RedirectToAction(nameof(Index));
                 }
-
-                todo.Title = viewModel.Title;
-                todo.Description = viewModel.Description;
-                todo.IsCompleted = viewModel.IsCompleted;
-                todo.DueDate = viewModel.DueDate;
-                todo.CategoryId = viewModel.CategoryId;
-
-                await _todoService.UpdateTodoAsync(todo);
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    // Hata mesajını ModelState'e ekle
+                    ModelState.AddModelError("", "Güncelleme sırasında bir hata oluştu: " + ex.Message);
+                }
             }
 
+            // ModelState geçerli değilse veya hata oluşursa, kategorileri yeniden yükle
             var categories = await _categoryService.GetAllCategoriesAsync();
-            viewModel.Categories = new SelectList(categories, "Id", "Name");
+            viewModel.Categories = new SelectList(categories, "Id", "Name", viewModel.CategoryId);
             return View(viewModel);
         }
 

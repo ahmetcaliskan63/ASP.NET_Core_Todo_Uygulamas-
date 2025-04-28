@@ -53,11 +53,24 @@ namespace ToDoUygulaması.Services
 
         public async Task AddTodoAsync(Todo todo)
         {
-            await _todoRepository.AddAsync(todo);
-            _cacheService.Remove(TodoListCacheKey);
-            if (todo.CategoryId.HasValue)
+            if (todo == null)
             {
-                _cacheService.Remove(string.Format(TodoCategoryListCacheKey, todo.CategoryId.Value));
+                throw new ArgumentNullException(nameof(todo));
+            }
+
+            try
+            {
+                await _todoRepository.AddAsync(todo);
+                _cacheService.Remove(TodoListCacheKey);
+                if (todo.CategoryId.HasValue)
+                {
+                    _cacheService.Remove(string.Format(TodoCategoryListCacheKey, todo.CategoryId.Value));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata loglama veya özel bir hata fırlatma
+                throw new Exception("Görev eklenirken bir hata oluştu.", ex);
             }
         }
 

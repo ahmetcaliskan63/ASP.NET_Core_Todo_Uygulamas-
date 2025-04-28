@@ -12,8 +12,8 @@
                     <h4 class="mb-0">Yeni Görev Ekle</h4>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         
                         <div class="mb-3">
                             <label asp-for="Title" class="form-label"></label>

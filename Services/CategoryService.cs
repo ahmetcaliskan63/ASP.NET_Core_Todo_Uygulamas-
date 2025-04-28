@@ -38,8 +38,27 @@ namespace ToDoUygulaması.Services
 
         public async Task AddCategoryAsync(Category category)
         {
-            await _categoryRepository.AddAsync(category);
-            _cacheService.Remove(CategoryListCacheKey);
+            if (category == null)
+            {
+                throw new ArgumentNullException(nameof(category));
+            }
+
+            try
+            {
+                // Kategori nesnesinin durumunu kontrol et
+                Console.WriteLine($"Servis: Kategori ekleniyor: {category.Name}, {category.Description}");
+                
+                await _categoryRepository.AddAsync(category);
+                _cacheService.Remove(CategoryListCacheKey);
+            }
+            catch (Exception ex)
+            {
+                // Hata detaylarını loglama
+                Console.WriteLine($"Servis: Kategori eklenirken hata: {ex.Message}");
+                Console.WriteLine($"Servis: Stack trace: {ex.StackTrace}");
+                
+                throw; // Hatayı yeniden fırlat
+            }
         }
 
         public async Task UpdateCategoryAsync(Category category)

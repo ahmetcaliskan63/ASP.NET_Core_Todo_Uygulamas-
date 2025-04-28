@@ -1,11 +1,10 @@
-C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.exe
-C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.dll
-C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\appsettings.json
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.staticwebassets.runtime.json
+C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.exe
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.deps.json
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.runtimeconfig.json
+C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\ToDoUygulaması.pdb
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Humanizer.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -16,6 +15,7 @@ C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.CodeAnalysis.CS
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\ASUS\Desktop\ToDoUygulaması\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
