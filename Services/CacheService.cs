@@ -21,7 +21,7 @@ namespace ToDoUygulaması.Services
         public bool Set<T>(string key, T value, TimeSpan? expiry = null)
         {
             var options = new MemoryCacheEntryOptions();
-            
+
             if (expiry.HasValue)
             {
                 options.SetAbsoluteExpiration(expiry.Value);

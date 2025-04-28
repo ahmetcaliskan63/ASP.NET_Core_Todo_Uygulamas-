@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Yapılacaklar Listesi</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Todo" asp-action="Index">Yapılacaklar Listesi</a>
+                <a class="navbar-brand" asp-controller="Todo" asp-action="Index">
+                    <i class="fas fa-check-double me-2"></i>Yapılacaklar Listesi
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,10 +23,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Todo" asp-action="Index">Görevler</a>
+                            <a class="nav-link text-white" asp-controller="Todo" asp-action="Index">
+                                <i class="fas fa-tasks me-1"></i> Görevler
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Category" asp-action="Index">Kategoriler</a>
+                            <a class="nav-link text-white" asp-controller="Category" asp-action="Index">
+                                <i class="fas fa-tag me-1"></i> Kategoriler
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -36,8 +44,15 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - Yapılacaklar Listesi Uygulaması
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-md-6">
+                    &copy; @DateTime.Now.Year - Yapılacaklar Listesi Uygulaması
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="https://docs.microsoft.com/aspnet/core">ASP.NET Core ile geliştirilmiştir</a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
