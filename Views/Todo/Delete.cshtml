@@ -1,0 +1,46 @@
+@model ToDoUygulaması.Models.Todo
+
+@{
+    ViewData["Title"] = "Görev Sil";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Görevi Silmek İstediğinize Emin Misiniz?</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Başlık</dt>
+                        <dd class="col-sm-9">@Model.Title</dd>
+                        
+                        <dt class="col-sm-3">Açıklama</dt>
+                        <dd class="col-sm-9">@Model.Description</dd>
+                        
+                        <dt class="col-sm-3">Kategori</dt>
+                        <dd class="col-sm-9">@(Model.Category?.Name ?? "Kategorisiz")</dd>
+                        
+                        <dt class="col-sm-3">Durum</dt>
+                        <dd class="col-sm-9">@(Model.IsCompleted ? "Tamamlandı" : "Tamamlanmadı")</dd>
+                        
+                        <dt class="col-sm-3">Oluşturulma Tarihi</dt>
+                        <dd class="col-sm-9">@Model.CreatedDate.ToString("dd/MM/yyyy HH:mm")</dd>
+                        
+                        <dt class="col-sm-3">Bitiş Tarihi</dt>
+                        <dd class="col-sm-9">@(Model.DueDate?.ToString("dd/MM/yyyy") ?? "-")</dd>
+                    </dl>
+                    
+                    <form asp-action="Delete" class="mt-3">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
