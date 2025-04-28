@@ -13,6 +13,7 @@ namespace ToDoUygulaması.Models
 
         public string Description { get; set; }
 
-        public ICollection<Todo> Todos { get; set; }
+        // Todos koleksiyonunu başlatarak null olmasını önlüyoruz
+        public ICollection<Todo> Todos { get; set; } = new List<Todo>();
     }
 }

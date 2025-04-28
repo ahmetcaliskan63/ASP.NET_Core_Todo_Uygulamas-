@@ -32,41 +32,28 @@ namespace ToDoUygulaması.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
+            // Todos alanını model doğrulamasından çıkar
+            ModelState.Remove("Todos");
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Kategori ekleme işlemi öncesi debug bilgisi
-                    Console.WriteLine($"Kategori ekleniyor: {category.Name}, {category.Description}");
-                    
+                    // Eğer Todos null ise, yeni bir liste oluştur
+                    if (category.Todos == null)
+                    {
+                        category.Todos = new List<Todo>();
+                    }
+
                     await _categoryService.AddCategoryAsync(category);
-                    
-                    // Başarılı mesajını TempData'ya ekle
                     TempData["SuccessMessage"] = "Kategori başarıyla eklendi!";
-                    
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    // Hata detaylarını loglama
-                    Console.WriteLine($"Kategori eklenirken hata: {ex.Message}");
-                    Console.WriteLine($"Stack trace: {ex.StackTrace}");
-                    
                     ModelState.AddModelError("", "Kategori eklenirken bir hata oluştu: " + ex.Message);
                 }
             }
-            else
-            {
-                // ModelState hatalarını loglama
-                foreach (var modelState in ModelState.Values)
-                {
-                    foreach (var error in modelState.Errors)
-                    {
-                        Console.WriteLine($"ModelState hatası: {error.ErrorMessage}");
-                    }
-                }
-            }
-            
             return View(category);
         }
 
