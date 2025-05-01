@@ -29,8 +29,8 @@ namespace ToDoUygulaması.Data
             );
 
             modelBuilder.Entity<Todo>().HasData(
-                new Todo { Id = 1, Title = "Alışveriş Yap", Description = "Market alışverişi yapılacak", IsCompleted = false, CategoryId = 1 },
-                new Todo { Id = 2, Title = "Rapor Hazırla", Description = "Haftalık rapor hazırlanacak", IsCompleted = false, CategoryId = 2 }
+                new Todo { Id = 1, Title = "Alışveriş Yap", Description = "Market alışverişi yapılacak", DueDate = new DateTime(2025, 3, 12), IsCompleted = false, CategoryId = 1 },
+                new Todo { Id = 2, Title = "Rapor Hazırla", Description = "Haftalık rapor hazırlanacak", DueDate = new DateTime(2025, 5, 28), IsCompleted = false, CategoryId = 2 }
             );
         }
     }
