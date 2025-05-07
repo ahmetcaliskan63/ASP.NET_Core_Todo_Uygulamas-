@@ -31,4 +31,4 @@ Mevcut görevlerin tüm bilgilerini düzenlemek için kullanılan form.
 Tüm kategorilerin listelendiği sayfa. Kullanıcılar kategorileri düzenleyebilir, silebilir ve yeni kategori ekleyebilirler.
 
  Yeni Kategori Ekleme
-Kullanıcılar kategori adı ve açıklama girerek yeni kategoriler oluşturabilirler.
+Kullanıcılar kategori adı ve açıklama girerek yeni kategoriler oluşturabilirler. 
