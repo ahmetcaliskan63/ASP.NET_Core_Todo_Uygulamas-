@@ -9,7 +9,7 @@ Bu proje, ASP.NET Core MVC kullanılarak geliştirilmiş bir yapılacaklar liste
 - Bitiş tarihi belirleme
 - Duyarlı ve kullanıcı dostu arayüz
  Kullanılan Teknolojiler
-- ASP.NET Core 6.0 : Web uygulaması çerçevesi
+- ASP.NET Core 6.0 : Web uygulaması çerçevesi 
 - Entity Framework Core : Veritabanı işlemleri için ORM
 - Bootstrap 5 : Duyarlı ve modern kullanıcı arayüzü
 - Font Awesome : İkonlar
